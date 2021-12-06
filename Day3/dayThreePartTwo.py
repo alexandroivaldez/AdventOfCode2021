@@ -39,30 +39,31 @@ epsilonRate = list("".join(epsilonRate))
 def binaryConverter(arr):
   value = 0
   for i in range(len(arr)):
-	  digit = arr.pop()
-	  if digit == '1':
-		  value = value + pow(2, i)
+    digit = arr.pop()
+    if digit == '1':
+      value = value + pow(2, i)
   return value
 
 #print(binaryConverter(gammaRate) * binaryConverter(epsilonRate))
 
-#Iterate through each index
-#Iterate through each number in code
-arr2 = []
-for instruction in arr:
-  code = list(instruction)
-  #print("".join(code))
-  if code[0] == '1':
-    arr2.append(instruction)
+#Recursive iteration through the loop filtering for '1'. Still missing the if statement that's checking which value is  greater & going from there.
 
+globalCounter = 0
 
-arr3 = []
-for instruction in arr:
-  code = list(instruction)
-  #print("".join(code))
-  if code[1] == '1':
-    arr3.append(instruction)
-
-print(arr3)
-
-#Obviously going to need to use recursion. I'll get to this later.
+def recursiveLoop(arr):
+  print(arr)
+  if len(arr) == 1:
+    return 1
+  else:
+    global globalCounter
+    newArr = []
+    for instruction in arr:
+      code = list(instruction)
+      #print("".join(code))
+      if code[globalCounter] == '1':
+        newArr.append(instruction)
+    globalCounter += 1
+    return recursiveLoop(newArr)
+    
+        
+recursiveLoop(arr)
